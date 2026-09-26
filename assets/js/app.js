@@ -170,7 +170,7 @@ window.MNApp = (function () {
     for (let m = 1; m <= 12; m++) {
       const t = MN.Advisories.cropTitle(m);
       const name = MN.lang === "ne" ? t.ne : t.en;
-      const active = m === mo ? `style="border-color:var(--brand);background:#ecfeff"` : "";
+      const active = m === mo ? `style="border-color:var(--accent);background:rgba(56,189,248,.13)"` : "";
       html += `<div class="mtn-card" ${active}><h4>${MN.t("months")[m - 1]}</h4>` +
         `<div style="font-size:12px;color:var(--muted)">${name.replace(/^(Crop note|बाली नोट):?\s*/, "")}</div></div>`;
     }

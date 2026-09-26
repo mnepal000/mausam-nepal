@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Method, model &amp; data — Mausam Nepal</title>
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .langbtn { position: fixed; top: 14px; right: 16px; z-index: 99; }
@@ -124,7 +124,18 @@
       <li><b>तालिम:</b> समयअनुसार विभाजन, २०२०-२०२४ मा तालिम, २०२५ देखि २०२६-०९-२० मा परीक्षण।</li>
       <li><b>प्रयोग:</b> स्केलर र गुणाङ्क JSON का रूपमा ब्राउजरमै चल्छ; प्रत्यक्ष तथ्याङ्कमा उही लजिस्टिक सूत्र लागू हुन्छ।</li>
     </ul>
-    <h3>परीक्षण नतिजा (माथिको तालिका हेर्नुहोस्)</h3>
+    <h3>परीक्षण नतिजा (२०२५ देखि २०२६-०९-२०)</h3>
+    <table class="metric-table">
+      <tr><th>स्टेसन</th><th>सटीकता</th><th>प्रिसिजन</th><th>रिकल</th><th>AUC</th><th>साधारण आधार</th></tr>
+      <tr><td>Kathmandu</td><td>0.795</td><td>0.605</td><td>0.863</td><td>0.902</td><td>0.794</td></tr>
+      <tr><td>Pokhara</td><td>0.815</td><td>0.545</td><td>0.809</td><td>0.907</td><td>0.852</td></tr>
+      <tr><td>Biratnagar</td><td>0.777</td><td>0.480</td><td>0.807</td><td>0.879</td><td>0.832</td></tr>
+      <tr><td>Nepalgunj</td><td>0.783</td><td>0.391</td><td>0.850</td><td>0.892</td><td>0.878</td></tr>
+      <tr><td>Lukla</td><td>0.818</td><td>0.635</td><td>0.801</td><td>0.897</td><td>0.796</td></tr>
+      <tr><td>Jomsom</td><td>0.774</td><td>0.298</td><td>0.706</td><td>0.838</td><td>0.883</td></tr>
+      <tr><td>Ilam</td><td>0.800</td><td>0.615</td><td>0.824</td><td>0.892</td><td>0.781</td></tr>
+      <tr><td>Jumla</td><td>0.790</td><td>0.481</td><td>0.876</td><td>0.905</td><td>0.849</td></tr>
+    </table>
     <p>इमानदार व्याख्या: मोडेलले वर्षा र सुख्खा छुट्याउन राम्रो गर्छ (AUC ०.८४-०.९१)
     र धेरैजसो वर्षाका घटना समात्छ, तर समग्र सटीकता सामान्य अनुमानको नजिक छ।
     त्यसैले पोर्टलले मोडेलको सम्भावना विश्व मौसम मोडेलको अनुमानसँगै देखाउँछ।
@@ -161,8 +172,8 @@
   </div>
 </footer>
 
-<script src="assets/js/config.js?v=4"></script>
-<script src="assets/js/i18n.js?v=4"></script>
+<script src="assets/js/config.js?v=5"></script>
+<script src="assets/js/i18n.js?v=5"></script>
 <script>
   MN.setLang(MN.lang);
   document.getElementById("lang-toggle").addEventListener("click", function () {

@@ -15,8 +15,12 @@ MN.SatMap = (function () {
   function init(loc) {
     if (map) { setLocation(loc); return; }
     map = L.map("satmap", { zoomControl: true }).setView([loc.lat, loc.lon], 7);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      maxZoom: 12, attribution: "© OpenStreetMap contributors © CARTO"
+    // dark-mode base map: OSM tiles darkened through their own pane so overlays stay true
+    const bp = map.createPane("basemap");
+    bp.style.zIndex = 190;
+    bp.style.filter = "invert(1) hue-rotate(190deg) saturate(.35) brightness(.9) contrast(.95)";
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 12, pane: "basemap", attribution: "© OpenStreetMap contributors"
     }).addTo(map);
     marker = L.marker([loc.lat, loc.lon]).addTo(map);
     loadRadar();
