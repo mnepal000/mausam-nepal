@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Method, model &amp; data — Mausam Nepal</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.langbtn { position: fixed; top: 14px; right: 16px; z-index: 99; }
+</style>
+</head>
+<body>
+<button id="lang-toggle" class="lang-toggle langbtn" style="background:#0e7490;border-color:#0e7490">ने</button>
+<main class="container" style="max-width:860px">
+  <p><a href="index.html" data-i18n="backHome">Back to forecast</a></p>
+  <div class="card prose" id="about-en">
+    <h1>Method, model &amp; data</h1>
+    <h2>What this is</h2>
+    <p>Mausam Nepal is a bilingual community weather portal for Nepal, built for
+    farmers and travelers. It combines live forecast data, satellite imagery and a
+    small machine-learning model to answer practical questions: will it rain in the
+    next few hours, is a dry spell turning into drought, and is it safe to travel
+    in the hills or high mountains.</p>
+
+    <h2>How the advisories work</h2>
+    <p>The advisory engine reads the latest forecast for your location and applies
+    a transparent set of rules, written in the style of the agromet bulletins
+    published by Nepal's Department of Hydrology and Meteorology (DHM), NARC and
+    NAMIS. Examples: more than 80 mm of rain in 24 hours triggers a critical
+    harvest advisory; hail in the forecast triggers an urgent warning; a freezing
+    level below your elevation triggers a snow warning for trekkers. Every rule is
+    deterministic and inspectable in <code>assets/js/advisories.js</code>. The
+    crop notes follow Nepal's real crop calendar: paddy transplanting in
+    June-July, harvest in October-November, wheat sowing in November.</p>
+
+    <h2>The AI rain-nowcast model</h2>
+    <p>For 8 core stations we trained a real classifier: an L2 logistic-regression
+    model that predicts the probability of rain (&gt; 0.5 mm in at least one hour)
+    over the <b>next 6 hours</b>.</p>
+    <ul>
+      <li><b>Data:</b> Open-Meteo ERA5 reanalysis, hourly, 2020-01-01 to 2026-09-20, Asia/Kathmandu time.</li>
+      <li><b>Features (22):</b> current temperature, humidity, dew-point depression,
+      cloud cover, pressure, wind and precipitation; 6-hour and 24-hour lags;
+      3-hour pressure tendency; 24-hour temperature change; 6-hour precipitation
+      sum; and diurnal plus seasonal cycles.</li>
+      <li><b>Training:</b> strictly temporal split, trained on 2020-2024 and tested
+      on 2025 to 2026-09-20, so the test is genuinely unseen future weather.</li>
+      <li><b>Deployment:</b> the scaler and coefficients are shipped as JSON and
+      the identical logistic function runs in your browser on live data. Nothing
+      is sent anywhere.</li>
+    </ul>
+    <h3>Test-set performance (2025 to 2026-09-20)</h3>
+    <table class="metric-table">
+      <tr><th>Station</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>AUC</th><th>Naive baseline</th></tr>
+      <tr><td>Kathmandu</td><td>0.795</td><td>0.605</td><td>0.863</td><td>0.902</td><td>0.794</td></tr>
+      <tr><td>Pokhara</td><td>0.815</td><td>0.545</td><td>0.809</td><td>0.907</td><td>0.852</td></tr>
+      <tr><td>Biratnagar</td><td>0.777</td><td>0.480</td><td>0.807</td><td>0.879</td><td>0.832</td></tr>
+      <tr><td>Nepalgunj</td><td>0.783</td><td>0.391</td><td>0.850</td><td>0.892</td><td>0.878</td></tr>
+      <tr><td>Lukla</td><td>0.818</td><td>0.635</td><td>0.801</td><td>0.897</td><td>0.796</td></tr>
+      <tr><td>Jomsom</td><td>0.774</td><td>0.298</td><td>0.706</td><td>0.838</td><td>0.883</td></tr>
+      <tr><td>Ilam</td><td>0.800</td><td>0.615</td><td>0.824</td><td>0.892</td><td>0.781</td></tr>
+      <tr><td>Jumla</td><td>0.790</td><td>0.481</td><td>0.876</td><td>0.905</td><td>0.849</td></tr>
+    </table>
+    <p>How to read this honestly: the models discriminate rain from no-rain well
+    (AUC 0.84-0.91) and catch most rain events (recall 0.71-0.88), but their raw
+    accuracy is close to a naive baseline ("if it is raining now, predict rain").
+    That is normal for short-term nowcasting from point observations, and it is
+    why the portal shows the model's probability <i>next to</i> the global
+    weather-model estimate instead of hiding the comparison. The model is tuned
+    to miss fewer rain events at the cost of some false alarms, which is the
+    safer error direction for farmers and travelers.</p>
+
+    <h2>Drought watch method</h2>
+    <p>For your location we pull daily ERA5 precipitation from 1995 to about a week
+    ago, sum the most recent 30 days, and compare it with the 1995-2024 mean for
+    the same calendar dates. Below 40% of normal is flagged as drought, 40-70% as
+    drier than normal, above 140% as wetter than normal.</p>
+
+    <h2>Data sources</h2>
+    <ul class="src-list">
+      <li><b>Forecasts &amp; history:</b> Open-Meteo (blends NOAA GFS, DWD ICON, ECMWF IFS, JMA and others), CC BY 4.0.</li>
+      <li><b>Rain radar:</b> RainViewer global mosaic, past 2 hours, free for community use with attribution.</li>
+      <li><b>Satellite rainfall:</b> NASA GIBS GPM IMERG precipitation rate, public domain.</li>
+      <li><b>True-color imagery:</b> NASA GIBS VIIRS Corrected Reflectance, public domain.</li>
+      <li><b>Base map:</b> OpenStreetMap contributors.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <p>This is a community planning tool, not an official warning system. Mountain
+    weather can change faster than any model update cycle, and radar coverage is
+    sparse over parts of Nepal. For official alerts, follow Nepal's Department of
+    Hydrology and Meteorology (DHM). Reproduce everything: training script in
+    <code>ml/</code>, metrics in <code>ml/model_card.md</code>.</p>
+  </div>
+
+  <div class="card prose" id="about-ne" style="display:none">
+    <h1>विधि, मोडेल र तथ्याङ्क</h1>
+    <h2>यो के हो</h2>
+    <p>मौसम नेपाल किसान र यात्रीका लागि बनाइएको द्विभाषिक सामुदायिक मौसम पोर्टल हो।
+    यसले प्रत्यक्ष पूर्वानुमान तथ्याङ्क, उपग्रह तस्बिर र सानो मेसिन लर्निङ मोडेल
+    जोडेर व्यावहारिक प्रश्नको उत्तर दिन्छ: आगामी केही घण्टामा पानी पर्छ कि पर्दैन,
+    सुक्खा अवधि खडेरीमा परिणत हुँदैछ कि, र पहाड वा हिमालमा यात्रा सुरक्षित छ कि छैन।</p>
+
+    <h2>परामर्श कसरी बन्छ</h2>
+    <p>परामर्श इन्जिनले तपाईंको स्थानको पछिल्लो पूर्वानुमान पढेर पारदर्शी नियमहरू
+    लागू गर्छ, जुन जल तथा मौसम विज्ञान विभाग (DHM), NARC र NAMIS का कृषि-मौसम
+    बुलेटिनकै शैलीमा लेखिएका छन्। उदाहरण: २४ घण्टामा ८० मिमिभन्दा बढी वर्षा भए
+    गम्भीर कटानी परामर्श; असिनाको पूर्वानुमानमा तत्काल चेतावनी; हिउँ पर्ने उचाइ
+    तपाईंको उचाइभन्दा तल भए पदयात्रीका लागि हिमपात चेतावनी। हरेक नियम
+    <code>assets/js/advisories.js</code> मा हेर्न सकिन्छ। बाली नोटहरू नेपालको
+    वास्तविक बाली पात्रोअनुसार छन्: जुन-जुलाईमा धान रोपाइँ, अक्टोबर-नोभेम्बरमा
+    कटानी, नोभेम्बरमा गहुँ छर्ने।</p>
+
+    <h2>एआई वर्षा पूर्वानुमान मोडेल</h2>
+    <p>८ मुख्य स्टेसनका लागि हामीले वास्तविक वर्गीकरणकर्ता तालिम दियौं: L2
+    लजिस्टिक रिग्रेसन मोडेल, जसले <b>आगामी ६ घण्टामा</b> वर्षा (&gt; ०.५ मिमि)
+    हुने सम्भावना बताउँछ।</p>
+    <ul>
+      <li><b>तथ्याङ्क:</b> Open-Meteo ERA5 पुनर्विश्लेषण, घण्टावार, २०२०-०१-०१ देखि २०२६-०९-२०, काठमाडौं समय।</li>
+      <li><b>विशेषता (२२):</b> तापक्रम, आर्द्रता, शीताङ्क अन्तर, बादल, चाप, हावा र वर्षा;
+      ६-घण्टा र २४-घण्टा पुराना मान; ३-घण्टे चाप प्रवृत्ति; २४-घण्टे तापक्रम परिवर्तन;
+      ६-घण्टे वर्षा योग; दैनिक र मौसमी चक्र।</li>
+      <li><b>तालिम:</b> समयअनुसार विभाजन, २०२०-२०२४ मा तालिम, २०२५ देखि २०२६-०९-२० मा परीक्षण।</li>
+      <li><b>प्रयोग:</b> स्केलर र गुणाङ्क JSON का रूपमा ब्राउजरमै चल्छ; प्रत्यक्ष तथ्याङ्कमा उही लजिस्टिक सूत्र लागू हुन्छ।</li>
+    </ul>
+    <h3>परीक्षण नतिजा (माथिको तालिका हेर्नुहोस्)</h3>
+    <p>इमानदार व्याख्या: मोडेलले वर्षा र सुख्खा छुट्याउन राम्रो गर्छ (AUC ०.८४-०.९१)
+    र धेरैजसो वर्षाका घटना समात्छ, तर समग्र सटीकता सामान्य अनुमानको नजिक छ।
+    त्यसैले पोर्टलले मोडेलको सम्भावना विश्व मौसम मोडेलको अनुमानसँगै देखाउँछ।
+    मोडेल किसान र यात्रीका लागि सुरक्षित दिशामा ट्युन गरिएको छ: वर्षा छुट्नुभन्दा
+    गलत चेतावनी राम्रो।</p>
+
+    <h2>खडेरी निगरानी विधि</h2>
+    <p>तपाईंको स्थानका लागि १९९५ देखिको दैनिक ERA5 वर्षा निकालेर पछिल्लो ३० दिनको
+    योग सोही मितिको १९९५-२०२४ सरदरसँग तुलना गरिन्छ। सामान्यको ४०% भन्दा कमलाई
+    खडेरी, ४०-७०% लाई सामान्यभन्दा सुख्खा, १४०% भन्दा माथिलाई ओसिलो मानिन्छ।</p>
+
+    <h2>तथ्याङ्क स्रोतहरू</h2>
+    <ul class="src-list">
+      <li><b>पूर्वानुमान र इतिहास:</b> Open-Meteo (NOAA GFS, DWD ICON, ECMWF IFS, JMA आदि), CC BY 4.0।</li>
+      <li><b>वर्षा राडार:</b> RainViewer विश्वव्यापी मोजाइक, पछिल्लो २ घण्टा।</li>
+      <li><b>उपग्रह वर्षा:</b> NASA GIBS GPM IMERG, सार्वजनिक डोमेन।</li>
+      <li><b>वास्तविक रङ तस्बिर:</b> NASA GIBS VIIRS, सार्वजनिक डोमेन।</li>
+      <li><b>आधार नक्सा:</b> OpenStreetMap योगदानकर्ता।</li>
+    </ul>
+
+    <h2>सीमाहरू</h2>
+    <p>यो सामुदायिक योजना उपकरण हो, आधिकारिक चेतावनी प्रणाली होइन। हिमाली मौसम
+    मोडेल अद्यावधिक चक्रभन्दा छिटो बदलिन सक्छ, र नेपालका केही भागमा राडार कभरेज
+    पातलो छ। आधिकारिक सतर्कताका लागि जल तथा मौसम विज्ञान विभाग (DHM) को सूचना
+    हेर्नुहोस्।</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div><b>⛰️ <span data-i18n="appName">Mausam Nepal</span></b><br>
+    <span data-i18n="footerTag"></span></div>
+    <div><a href="index.html" data-i18n="backHome">Back to forecast</a></div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+  MN.setLang(MN.lang);
+  document.getElementById("lang-toggle").addEventListener("click", function () {
+    MN.setLang(MN.lang === "ne" ? "en" : "ne");
+    document.getElementById("about-en").style.display = MN.lang === "ne" ? "none" : "block";
+    document.getElementById("about-ne").style.display = MN.lang === "ne" ? "block" : "none";
+  });
+  if (MN.lang === "ne") {
+    document.getElementById("about-en").style.display = "none";
+    document.getElementById("about-ne").style.display = "block";
+  }
+</script>
+</body>
+</html>

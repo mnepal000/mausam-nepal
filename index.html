@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mausam Nepal | मौसम नेपाल — AI Weather for Nepal</title>
+<meta name="description" content="Bilingual AI-powered weather portal for Nepal: forecasts, satellite imagery, rain nowcasts, farmer and traveler advisories, drought watch.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-row">
+    <div class="logo"><span class="mark">⛰️</span><span data-i18n="appName">Mausam Nepal</span></div>
+    <div><p class="tagline" data-i18n="tagline">AI-powered weather intelligence for Nepal</p></div>
+    <div class="header-spacer"></div>
+    <button id="lang-toggle" class="lang-toggle" aria-label="Language">ने</button>
+  </div>
+  <div class="search-wrap">
+    <span class="sicon">🔍</span>
+    <input id="place-search" data-i18n-ph="searchPlaceholder" placeholder="Search city, village or trailhead..." autocomplete="off">
+    <div id="search-results" class="search-results"></div>
+  </div>
+  <nav class="tabs">
+    <button data-tab="forecast" class="active" data-i18n="tabForecast">Forecast</button>
+    <button data-tab="satellite" data-i18n="tabSatellite">Satellite</button>
+    <button data-tab="advisories" data-i18n="tabAdvisories">Advisories</button>
+    <button data-tab="drought" data-i18n="tabDrought">Drought</button>
+  </nav>
+</header>
+
+<main class="container">
+
+  <!-- FORECAST -->
+  <section id="tab-forecast" class="tabpane active">
+    <div class="chips" id="quick-chips"></div>
+
+    <div class="card">
+      <div class="hero">
+        <div class="hero-main">
+          <div class="hero-icon" id="hero-icon">🌤️</div>
+          <div>
+            <div class="hero-place" id="hero-place">-</div>
+            <div class="hero-temp"><span id="hero-temp">-</span>°</div>
+            <div class="hero-cond" id="hero-cond">-</div>
+            <div class="hero-meta"><span data-i18n="updatedAt">Updated</span>: <span id="hero-updated">-</span>
+              · <span data-i18n="elevation">Elevation</span>: <span id="hero-elev">-</span> <span data-i18n="m">m</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row" id="hero-stats"></div>
+    </div>
+
+    <div class="card" id="nowcast-card">
+      <h2 data-i18n="aiNowcast">AI rain nowcast</h2>
+      <p class="desc" data-i18n="aiNowcastDesc"></p>
+      <div class="gauge-wrap">
+        <div class="gauge">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="64" fill="none" stroke="#e2e8f0" stroke-width="14"/>
+            <circle id="gauge-arc" cx="75" cy="75" r="64" fill="none" stroke="#0e7490"
+              stroke-width="14" stroke-linecap="round" stroke-dasharray="402" stroke-dashoffset="402"/>
+          </svg>
+          <div class="gval"><b id="gauge-val">-</b><span data-i18n="next6h">next 6 hours</span></div>
+        </div>
+        <div style="flex:1; min-width:220px">
+          <div class="compare-bar">
+            <div class="lbl"><span data-i18n="mlLabel">Mausam AI model</span><b id="ml-val">-</b></div>
+            <div class="track"><div class="fill ml" id="ml-bar" style="width:0%"></div></div>
+          </div>
+          <div class="compare-bar">
+            <div class="lbl"><span data-i18n="nwpLabel">Global weather model</span><b id="nwp-val">-</b></div>
+            <div class="track"><div class="fill nwp" id="nwp-bar" style="width:0%"></div></div>
+          </div>
+          <p class="model-note" id="model-note"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="mountain-card" style="display:none">
+      <h2 data-i18n="mountainTitle">Mountain conditions</h2>
+      <div class="mtn-grid" id="mountain-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="hourly">Hourly</h2>
+      <div class="hourly-strip" id="hourly-strip"><div class="skeleton" data-i18n="loading">Loading...</div></div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="daily7">7-day outlook</h2>
+      <div id="daily-list"></div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="alertsTitle">Weather alerts</h2>
+      <p class="desc" data-i18n="alertsDesc"></p>
+      <div class="alert-box">
+        <button class="btn" id="alerts-btn" data-i18n="enableAlerts">Enable alerts</button>
+        <span id="alerts-state" style="font-size:13px;color:var(--muted)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SATELLITE -->
+  <section id="tab-satellite" class="tabpane">
+    <div class="card">
+      <h2 data-i18n="satTitle">Satellite &amp; radar</h2>
+      <p class="desc" data-i18n="satDesc"></p>
+      <div class="map-controls">
+        <div class="seg" id="layer-seg">
+          <button data-layer="radar" class="active" data-i18n="layerRadar">Rain radar (live)</button>
+          <button data-layer="imerg" data-i18n="layerImerg">Satellite rainfall (IMERG)</button>
+          <button data-layer="truecolor" data-i18n="layerTruecolor">True color (MODIS)</button>
+        </div>
+        <button class="btn" id="anim-btn" style="padding:8px 16px">⏸ <span data-i18n="pause">Pause</span></button>
+      </div>
+      <div id="satmap"></div>
+      <div class="map-credit"><span data-i18n="creditRadar">Radar: RainViewer</span> · <span data-i18n="creditGibs">Imagery: NASA GIBS</span> · © OpenStreetMap</div>
+    </div>
+  </section>
+
+  <!-- ADVISORIES -->
+  <section id="tab-advisories" class="tabpane">
+    <div class="card">
+      <div class="aud-tabs">
+        <button id="aud-farmer" class="active" data-i18n="forFarmers">For farmers</button>
+        <button id="aud-traveler" data-i18n="forTravelers">For travelers</button>
+      </div>
+      <div id="advisory-list"></div>
+    </div>
+  </section>
+
+  <!-- DROUGHT -->
+  <section id="tab-drought" class="tabpane">
+    <div class="card">
+      <h2 data-i18n="droughtTitle">Drought watch</h2>
+      <p class="desc" data-i18n="droughtDesc"></p>
+      <div class="drought-nums">
+        <div class="dn"><b id="d-last">-</b><span data-i18n="last30d">Last 30 days</span></div>
+        <div class="dn"><b id="d-norm">-</b><span data-i18n="normal30y">30-year normal</span></div>
+        <div class="dn"><b id="d-pct">-</b><span id="d-status">-</span></div>
+      </div>
+      <div class="drought-meter"><div class="pin" id="d-pin" style="left:50%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)">
+        <span data-i18n="st_drought">Drought conditions</span><span data-i18n="st_normal">Normal</span><span data-i18n="st_wet">Wetter than normal</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="cropCalendar">Crop calendar</h2>
+      <div id="crop-cal"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div>
+      <b>⛰️ <span data-i18n="appName">Mausam Nepal</span></b><br>
+      <span data-i18n="footerTag">A community weather service built on open data.</span><br>
+      <span style="font-size:12px" data-i18n="disclaimer"></span>
+    </div>
+    <div style="text-align:right">
+      <a href="about.html" data-i18n="viewAbout">Method, model &amp; data</a><br>
+      <span style="font-size:12px">Forecast: Open-Meteo (CC BY 4.0) · Radar: <a href="https://www.rainviewer.com/">RainViewer</a> · Imagery: NASA GIBS</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/weather.js"></script>
+<script src="assets/js/nowcast.js"></script>
+<script src="assets/js/advisories.js"></script>
+<script src="assets/js/drought.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
