@@ -15,8 +15,8 @@ MN.SatMap = (function () {
   function init(loc) {
     if (map) { setLocation(loc); return; }
     map = L.map("satmap", { zoomControl: true }).setView([loc.lat, loc.lon], 7);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 12, attribution: "© OpenStreetMap contributors"
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 12, attribution: "© OpenStreetMap contributors © CARTO"
     }).addTo(map);
     marker = L.marker([loc.lat, loc.lon]).addTo(map);
     loadRadar();

@@ -22,6 +22,17 @@ window.MNApp = (function () {
     const up = c.time.slice(0, 16).replace("T", " ");
     $("hero-updated").textContent = up;
     $("hero-elev").textContent = MN.num(loc.elev);
+    /* living sky: theme the whole page off the current condition */
+    const wk = MN.wmoKey(c.weather_code);
+    let sky = "cloud";
+    if (wk === "clear" || wk === "mainlyClear" || wk === "partlyCloudy") sky = c.is_day ? "clear-day" : "clear-night";
+    else if (wk === "fog") sky = "fog";
+    else if (wk === "drizzle") sky = "drizzle";
+    else if (wk === "rain" || wk === "rainShowers") sky = "rain";
+    else if (wk === "snow" || wk === "snowShowers") sky = "snow";
+    else if (wk === "thunderstorm" || wk === "thunderHail") sky = "storm";
+    document.body.dataset.sky = sky;
+    if (MN.FX) MN.FX.setSky(sky);
     const i = MN.WX.currentHourIndex(d);
     const stats = [
       [MN.t("feelsLike"), MN.num(Math.round(c.apparent_temperature)) + "°"],
@@ -335,6 +346,7 @@ window.MNApp = (function () {
   function init() {
     document.documentElement.lang = MN.lang === "ne" ? "ne" : "en";
     MN.setLang(MN.lang);
+    if (MN.FX) MN.FX.init();
     $("lang-toggle").addEventListener("click", () =>
       MN.setLang(MN.lang === "ne" ? "en" : "ne"));
     initTabs(); initSearch(); initAlerts();

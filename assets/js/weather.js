@@ -23,7 +23,7 @@ MN.WX = (function () {
     const base =
       `latitude=${loc.lat}&longitude=${loc.lon}&timezone=${encodeURIComponent(MN.TIMEZONE)}` +
       `&past_days=2&forecast_days=8`;
-    const cur = "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,pressure_msl,wind_speed_10m,cloud_cover";
+    const cur = "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,pressure_msl,wind_speed_10m,cloud_cover,is_day";
     const hourly = "temperature_2m,relative_humidity_2m,dew_point_2m,precipitation,precipitation_probability," +
       "weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_gusts_10m,visibility,uv_index,freezing_level_height";
     const hourlyMtn = ",wind_speed_700hPa,wind_speed_500hPa";
