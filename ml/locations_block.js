@@ -1,6 +1,3 @@
-/* Mausam Nepal: shared config — locations, constants, API endpoints */
-window.MN = window.MN || {};
-
 MN.PROVINCES = [
   { id: "koshi", en: "Koshi", ne: "कोशी" },
   { id: "madhesh", en: "Madhesh", ne: "मधेश" },
@@ -94,30 +91,3 @@ MN.LOCATIONS = [
   { slug: "abc", en: "Annapurna Base Camp", ne: "अन्नपूर्ण आधार शिविर", province: "gandaki", district: "Kaski", lat: 28.5306, lon: 83.8779, elev: 4130, zone: "mountain", hasModel: false },
   { slug: "dharan", en: "Dharan", ne: "धरान", province: "koshi", district: "Sunsari", lat: 26.8124, lon: 87.2839, elev: 349, zone: "terai", hasModel: false },
 ];
-
-MN.DEFAULT_LOCATION = "kathmandu";
-MN.TIMEZONE = "Asia/Kathmandu";
-
-/* WMO weather-code -> condition key */
-MN.wmoKey = function (code) {
-  if (code === 0) return "clear";
-  if (code === 1) return "mainlyClear";
-  if (code === 2) return "partlyCloudy";
-  if (code === 3) return "overcast";
-  if (code === 45 || code === 48) return "fog";
-  if (code >= 51 && code <= 57) return "drizzle";
-  if (code >= 61 && code <= 67) return "rain";
-  if (code >= 71 && code <= 77) return "snow";
-  if (code >= 80 && code <= 82) return "rainShowers";
-  if (code === 85 || code === 86) return "snowShowers";
-  if (code === 95) return "thunderstorm";
-  if (code === 96 || code === 99) return "thunderHail";
-  return "clear";
-};
-
-MN.wmoIcon = function (code) {
-  const k = MN.wmoKey(code);
-  return { clear: "☀️", mainlyClear: "🌤️", partlyCloudy: "⛅", overcast: "☁️",
-    fog: "🌫️", drizzle: "🌦️", rain: "🌧️", snow: "❄️",
-    rainShowers: "🌦️", snowShowers: "🌨️", thunderstorm: "⛈️", thunderHail: "🌩️" }[k] || "🌤️";
-};

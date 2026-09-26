@@ -167,14 +167,43 @@ window.MNApp = (function () {
   }
 
   function renderChips() {
-    const picks = ["kathmandu", "pokhara", "chitwan", "biratnagar", "nepalgunj",
-      "ilam", "jumla", "jomsom", "lukla", "ebc"];
+    const picks = ["kathmandu", "pokhara", "biratnagar", "nepalgunj", "lukla", "ebc"];
     $("quick-chips").innerHTML = picks.map(s => {
       const l = MN.LOCATIONS.find(x => x.slug === s);
       return `<button data-slug="${s}" class="${l.slug === S.loc.slug ? "active" : ""}">${locName(l)}</button>`;
     }).join("");
     $("quick-chips").querySelectorAll("button").forEach(b =>
       b.addEventListener("click", () => setLocation(MN.LOCATIONS.find(x => x.slug === b.dataset.slug))));
+    renderLocSelect();
+  }
+
+  function renderLocSelect() {
+    const sel = $("loc-select");
+    if (!sel) return;
+    let html = "";
+    for (const p of MN.PROVINCES) {
+      html += `<optgroup label="${MN.lang === "ne" ? p.ne : p.en}">`;
+      for (const l of MN.LOCATIONS.filter(x => x.province === p.id))
+        html += `<option value="${l.slug}">${locName(l)}</option>`;
+      html += `</optgroup>`;
+    }
+    sel.innerHTML = html;
+    sel.onchange = () => {
+      const l = MN.LOCATIONS.find(x => x.slug === sel.value);
+      if (l) setLocation(l);
+    };
+    syncLocSelect();
+  }
+
+  function syncLocSelect() {
+    const sel = $("loc-select");
+    if (!sel || !S.loc) return;
+    if (!sel.querySelector(`option[value="${S.loc.slug}"]`)) {
+      const o = document.createElement("option");
+      o.value = S.loc.slug; o.textContent = locName(S.loc);
+      sel.prepend(o);
+    }
+    sel.value = S.loc.slug;
   }
 
   /* ---------- location loading ---------- */

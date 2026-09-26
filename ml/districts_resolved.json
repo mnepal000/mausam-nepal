@@ -1,0 +1,623 @@
+[
+ {
+  "name": "Bhojpur",
+  "ne": "भोजपुर",
+  "province": "koshi",
+  "district": "Bhojpur",
+  "lat": 27.1715,
+  "lon": 87.0461,
+  "geo_name": "Bhojpur"
+ },
+ {
+  "name": "Dhankuta",
+  "ne": "धनकुटा",
+  "province": "koshi",
+  "district": "Dhankuta",
+  "lat": 26.9833,
+  "lon": 87.3333,
+  "geo_name": "Dhankuta"
+ },
+ {
+  "name": "Ilam",
+  "ne": "इलाम",
+  "province": "koshi",
+  "district": "Ilam",
+  "lat": 26.9094,
+  "lon": 87.9282,
+  "geo_name": "Ilām"
+ },
+ {
+  "name": "Bhadrapur",
+  "ne": "भद्रपुर",
+  "province": "koshi",
+  "district": "Jhapa",
+  "lat": 26.544,
+  "lon": 88.0944,
+  "geo_name": "Bhadrapur"
+ },
+ {
+  "name": "Diktel",
+  "ne": "दिक्तेल",
+  "province": "koshi",
+  "district": "Khotang",
+  "lat": 27.2159,
+  "lon": 86.794,
+  "geo_name": "Diktel"
+ },
+ {
+  "name": "Biratnagar",
+  "ne": "विराटनगर",
+  "province": "koshi",
+  "district": "Morang",
+  "lat": 26.455,
+  "lon": 87.2701,
+  "geo_name": "Biratnagar"
+ },
+ {
+  "name": "Okhaldhunga",
+  "ne": "ओखलढुङ्गा",
+  "province": "koshi",
+  "district": "Okhaldhunga",
+  "lat": 27.3113,
+  "lon": 86.5047,
+  "geo_name": "Okhalḍhuṅgā"
+ },
+ {
+  "name": "Phidim",
+  "ne": "फिदिम",
+  "province": "koshi",
+  "district": "Panchthar",
+  "lat": 27.1456,
+  "lon": 87.767,
+  "geo_name": "Phidim"
+ },
+ {
+  "name": "Khandbari",
+  "ne": "खाँदबारी",
+  "province": "koshi",
+  "district": "Sankhuwasabha",
+  "lat": 27.3819,
+  "lon": 87.2077,
+  "geo_name": "Khandbari"
+ },
+ {
+  "name": "Lukla",
+  "ne": "लुक्ला",
+  "province": "koshi",
+  "district": "Solukhumbu",
+  "lat": 27.6866,
+  "lon": 86.7314,
+  "geo_name": "Lukla"
+ },
+ {
+  "name": "Inaruwa",
+  "ne": "इनरुवा",
+  "province": "koshi",
+  "district": "Sunsari",
+  "lat": 26.6068,
+  "lon": 87.1478,
+  "geo_name": "Inaruwa"
+ },
+ {
+  "name": "Taplejung",
+  "ne": "ताप्लेजुङ",
+  "province": "koshi",
+  "district": "Taplejung",
+  "lat": 27.3571,
+  "lon": 87.6723,
+  "geo_name": "Tāplejuṅ"
+ },
+ {
+  "name": "Myanglung",
+  "ne": "म्याङलुङ",
+  "province": "koshi",
+  "district": "Terhathum",
+  "lat": 27.1157,
+  "lon": 87.5418,
+  "geo_name": "Myanglung"
+ },
+ {
+  "name": "Gaighat",
+  "ne": "गाईघाट",
+  "province": "koshi",
+  "district": "Udayapur",
+  "lat": 26.7917,
+  "lon": 86.6992,
+  "geo_name": "Gāi̇̄ghāṭ"
+ },
+ {
+  "name": "Kalaiya",
+  "ne": "कलैया",
+  "province": "madhesh",
+  "district": "Bara",
+  "lat": 27.0323,
+  "lon": 85.0026,
+  "geo_name": "Kalaiyā"
+ },
+ {
+  "name": "Janakpur",
+  "ne": "जनकपुर",
+  "province": "madhesh",
+  "district": "Dhanusha",
+  "lat": 26.7288,
+  "lon": 85.9263,
+  "geo_name": "Janakpur Dham"
+ },
+ {
+  "name": "Jaleshwor",
+  "ne": "जलेश्वर",
+  "province": "madhesh",
+  "district": "Mahottari",
+  "lat": 26.6518,
+  "lon": 85.7979,
+  "geo_name": "Jaleshwor"
+ },
+ {
+  "name": "Birgunj",
+  "ne": "वीरगञ्ज",
+  "province": "madhesh",
+  "district": "Parsa",
+  "lat": 27.0174,
+  "lon": 84.8805,
+  "geo_name": "Birgunj"
+ },
+ {
+  "name": "Gaur",
+  "ne": "गौर",
+  "province": "madhesh",
+  "district": "Rautahat",
+  "lat": 26.7637,
+  "lon": 85.2766,
+  "geo_name": "Gaur"
+ },
+ {
+  "name": "Rajbiraj",
+  "ne": "राजविराज",
+  "province": "madhesh",
+  "district": "Saptari",
+  "lat": 26.5397,
+  "lon": 86.748,
+  "geo_name": "Rājbirāj"
+ },
+ {
+  "name": "Siraha",
+  "ne": "सिराहा",
+  "province": "madhesh",
+  "district": "Siraha",
+  "lat": 26.6542,
+  "lon": 86.2079,
+  "geo_name": "Siraha"
+ },
+ {
+  "name": "Bhaktapur",
+  "ne": "भक्तपुर",
+  "province": "bagmati",
+  "district": "Bhaktapur",
+  "lat": 27.673,
+  "lon": 85.43,
+  "geo_name": "Bhaktapur"
+ },
+ {
+  "name": "Bharatpur",
+  "ne": "भरतपुर",
+  "province": "bagmati",
+  "district": "Chitwan",
+  "lat": 27.6803,
+  "lon": 84.4365,
+  "geo_name": "Bharatpur"
+ },
+ {
+  "name": "Charikot",
+  "ne": "चरिकोट",
+  "province": "bagmati",
+  "district": "Dolakha",
+  "lat": 27.6682,
+  "lon": 86.0519,
+  "geo_name": "Chari̇̄koṭ"
+ },
+ {
+  "name": "Kathmandu",
+  "ne": "काठमाडौं",
+  "province": "bagmati",
+  "district": "Kathmandu",
+  "lat": 27.7017,
+  "lon": 85.3206,
+  "geo_name": "Kathmandu"
+ },
+ {
+  "name": "Dhulikhel",
+  "ne": "धुलिखेल",
+  "province": "bagmati",
+  "district": "Kavrepalanchok",
+  "lat": 27.6221,
+  "lon": 85.5428,
+  "geo_name": "Dhulikhel"
+ },
+ {
+  "name": "Lalitpur",
+  "ne": "ललितपुर",
+  "province": "bagmati",
+  "district": "Lalitpur",
+  "lat": 27.6766,
+  "lon": 85.3142,
+  "geo_name": "Patan"
+ },
+ {
+  "name": "Hetauda",
+  "ne": "हेटौडा",
+  "province": "bagmati",
+  "district": "Makwanpur",
+  "lat": 27.4284,
+  "lon": 85.0322,
+  "geo_name": "Hetauda"
+ },
+ {
+  "name": "Bidur",
+  "ne": "बिदुर",
+  "province": "bagmati",
+  "district": "Nuwakot",
+  "lat": 27.9298,
+  "lon": 85.1577,
+  "geo_name": "Bidur"
+ },
+ {
+  "name": "Dhunche",
+  "ne": "धुन्चे",
+  "province": "bagmati",
+  "district": "Rasuwa",
+  "lat": 28.1125,
+  "lon": 85.2992,
+  "geo_name": "Dhunche"
+ },
+ {
+  "name": "Manthali",
+  "ne": "मन्थली",
+  "province": "bagmati",
+  "district": "Ramechhap",
+  "lat": 27.3896,
+  "lon": 86.0617,
+  "geo_name": "Manthali"
+ },
+ {
+  "name": "Kamalamai",
+  "ne": "कमलामाई",
+  "province": "bagmati",
+  "district": "Sindhuli",
+  "lat": 27.15,
+  "lon": 85.9,
+  "geo_name": "Kamalamai"
+ },
+ {
+  "name": "Chautara",
+  "ne": "चौतारा",
+  "province": "bagmati",
+  "district": "Sindhupalchok",
+  "lat": 27.7763,
+  "lon": 85.7127,
+  "geo_name": "Chautārā"
+ },
+ {
+  "name": "Baglung",
+  "ne": "बागलुङ",
+  "province": "gandaki",
+  "district": "Baglung",
+  "lat": 28.2673,
+  "lon": 83.5996,
+  "geo_name": "Bāgluṅ"
+ },
+ {
+  "name": "Gorkha",
+  "ne": "गोरखा",
+  "province": "gandaki",
+  "district": "Gorkha",
+  "lat": 28.0024,
+  "lon": 84.6201,
+  "geo_name": "Gorkha"
+ },
+ {
+  "name": "Pokhara",
+  "ne": "पोखरा",
+  "province": "gandaki",
+  "district": "Kaski",
+  "lat": 28.2669,
+  "lon": 83.9685,
+  "geo_name": "Pokhara"
+ },
+ {
+  "name": "Besisahar",
+  "ne": "बेंसीशहर",
+  "province": "gandaki",
+  "district": "Lamjung",
+  "lat": 28.2311,
+  "lon": 84.3775,
+  "geo_name": "Besisahar"
+ },
+ {
+  "name": "Chame",
+  "ne": "चामे",
+  "province": "gandaki",
+  "district": "Manang",
+  "lat": 28.5537,
+  "lon": 84.251,
+  "geo_name": "Chame"
+ },
+ {
+  "name": "Jomsom",
+  "ne": "जोमसोम",
+  "province": "gandaki",
+  "district": "Mustang",
+  "lat": 28.7844,
+  "lon": 83.7351,
+  "geo_name": "Jomsom"
+ },
+ {
+  "name": "Kawasoti",
+  "ne": "कावासोती",
+  "province": "gandaki",
+  "district": "Nawalpur",
+  "lat": 27.6252,
+  "lon": 84.1094,
+  "geo_name": "Kawasoti"
+ },
+ {
+  "name": "Kusma",
+  "ne": "कुश्मा",
+  "province": "gandaki",
+  "district": "Parbat",
+  "lat": 28.2227,
+  "lon": 83.6826,
+  "geo_name": "Kusma"
+ },
+ {
+  "name": "Putalibazar",
+  "ne": "पुतलीबजार",
+  "province": "gandaki",
+  "district": "Syangja",
+  "lat": 28.0955,
+  "lon": 83.8746,
+  "geo_name": "Putalibazar"
+ },
+ {
+  "name": "Damauli",
+  "ne": "दमौली",
+  "province": "gandaki",
+  "district": "Tanahun",
+  "lat": 27.9776,
+  "lon": 84.2649,
+  "geo_name": "Damauli"
+ },
+ {
+  "name": "Sandhikharka",
+  "ne": "सन्धिखर्क",
+  "province": "lumbini",
+  "district": "Arghakhanchi",
+  "lat": 27.9751,
+  "lon": 85.1437,
+  "geo_name": "Sandhikharka"
+ },
+ {
+  "name": "Nepalgunj",
+  "ne": "नेपालगञ्ज",
+  "province": "lumbini",
+  "district": "Banke",
+  "lat": 28.05,
+  "lon": 81.6167,
+  "geo_name": "Nepalgunj"
+ },
+ {
+  "name": "Gulariya",
+  "ne": "गुलरिया",
+  "province": "lumbini",
+  "district": "Bardiya",
+  "lat": 28.2058,
+  "lon": 81.3453,
+  "geo_name": "Gulariyā"
+ },
+ {
+  "name": "Ghorahi",
+  "ne": "घोराही",
+  "province": "lumbini",
+  "district": "Dang",
+  "lat": 28.0432,
+  "lon": 82.4862,
+  "geo_name": "Ghorahi"
+ },
+ {
+  "name": "Tamghas",
+  "ne": "तम्घास",
+  "province": "lumbini",
+  "district": "Gulmi",
+  "lat": 28.0675,
+  "lon": 83.2463,
+  "geo_name": "Tamghas"
+ },
+ {
+  "name": "Taulihawa",
+  "ne": "तौलिहवा",
+  "province": "lumbini",
+  "district": "Kapilvastu",
+  "lat": 27.5456,
+  "lon": 83.0542,
+  "geo_name": "Taulihawā"
+ },
+ {
+  "name": "Tansen",
+  "ne": "तानसेन",
+  "province": "lumbini",
+  "district": "Palpa",
+  "lat": 27.8666,
+  "lon": 83.5459,
+  "geo_name": "Tānsen"
+ },
+ {
+  "name": "Ramgram",
+  "ne": "रामग्राम",
+  "province": "lumbini",
+  "district": "Parasi",
+  "lat": 27.5333,
+  "lon": 83.6667,
+  "geo_name": "Ramgram"
+ },
+ {
+  "name": "Pyuthan",
+  "ne": "प्यूठान",
+  "province": "lumbini",
+  "district": "Pyuthan",
+  "lat": 28.0887,
+  "lon": 82.8843,
+  "geo_name": "Pyūthān"
+ },
+ {
+  "name": "Liwang",
+  "ne": "लिवाङ",
+  "province": "lumbini",
+  "district": "Rolpa",
+  "lat": 28.3021,
+  "lon": 82.637,
+  "geo_name": "Libāṅ"
+ },
+ {
+  "name": "Rukumkot",
+  "ne": "रुकुमकोट",
+  "province": "lumbini",
+  "district": "Rukum East",
+  "lat": 28.6201,
+  "lon": 82.6175,
+  "geo_name": "Rukumkot"
+ },
+ {
+  "name": "Butwal",
+  "ne": "बुटवल",
+  "province": "lumbini",
+  "district": "Rupandehi",
+  "lat": 27.7005,
+  "lon": 83.4484,
+  "geo_name": "Butwal"
+ },
+ {
+  "name": "Dailekh",
+  "ne": "दैलेख",
+  "province": "karnali",
+  "district": "Dailekh",
+  "lat": 28.8443,
+  "lon": 81.7101,
+  "geo_name": "Dailekh"
+ },
+ {
+  "name": "Dunai",
+  "ne": "दुनै",
+  "province": "karnali",
+  "district": "Dolpa",
+  "lat": 28.9528,
+  "lon": 82.8942,
+  "geo_name": "Dunai"
+ },
+ {
+  "name": "Simikot",
+  "ne": "सिमिकोट",
+  "province": "karnali",
+  "district": "Humla",
+  "lat": 29.9714,
+  "lon": 81.8197,
+  "geo_name": "Simikot"
+ },
+ {
+  "name": "Jumla",
+  "ne": "जुम्ला",
+  "province": "karnali",
+  "district": "Jumla",
+  "lat": 29.2747,
+  "lon": 82.1838,
+  "geo_name": "Jumla"
+ },
+ {
+  "name": "Manma",
+  "ne": "मान्मा",
+  "province": "karnali",
+  "district": "Kalikot",
+  "lat": 28.9001,
+  "lon": 81.6891,
+  "geo_name": "Manma"
+ },
+ {
+  "name": "Gamgadhi",
+  "ne": "गमगढी",
+  "province": "karnali",
+  "district": "Mugu",
+  "lat": 29.5476,
+  "lon": 82.1577,
+  "geo_name": "Gamgaḍhi̇̄"
+ },
+ {
+  "name": "Musikot",
+  "ne": "मुसिकोट",
+  "province": "karnali",
+  "district": "Rukum West",
+  "lat": 28.63,
+  "lon": 82.456,
+  "geo_name": "Musikoṭ-Khalaṅgā"
+ },
+ {
+  "name": "Salyan",
+  "ne": "सल्यान",
+  "province": "karnali",
+  "district": "Salyan",
+  "lat": 28.3753,
+  "lon": 82.1695,
+  "geo_name": "Salyan khalanga"
+ },
+ {
+  "name": "Birendranagar",
+  "ne": "वीरेन्द्रनगर",
+  "province": "karnali",
+  "district": "Surkhet",
+  "lat": 28.5967,
+  "lon": 81.6166,
+  "geo_name": "Birendranagar"
+ },
+ {
+  "name": "Mangalsen",
+  "ne": "मङ्गलसेन",
+  "province": "sudurpashchim",
+  "district": "Achham",
+  "lat": 29.1426,
+  "lon": 81.2591,
+  "geo_name": "Mangalsen"
+ },
+ {
+  "name": "Martadi",
+  "ne": "मार्तडी",
+  "province": "sudurpashchim",
+  "district": "Bajura",
+  "lat": 29.4576,
+  "lon": 81.4803,
+  "geo_name": "Martadi"
+ },
+ {
+  "name": "Dipayal",
+  "ne": "दिपायल",
+  "province": "sudurpashchim",
+  "district": "Doti",
+  "lat": 29.2608,
+  "lon": 80.94,
+  "geo_name": "Dipayal"
+ },
+ {
+  "name": "Dhangadhi",
+  "ne": "धनगढी",
+  "province": "sudurpashchim",
+  "district": "Kailali",
+  "lat": 28.7016,
+  "lon": 80.5899,
+  "geo_name": "Dhangadhi"
+ },
+ {
+  "name": "Mahendranagar",
+  "ne": "महेन्द्रनगर",
+  "province": "sudurpashchim",
+  "district": "Kanchanpur",
+  "lat": 28.964,
+  "lon": 80.1771,
+  "geo_name": "Mahendranagar"
+ }
+]
