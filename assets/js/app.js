@@ -84,7 +84,7 @@ window.MNApp = (function () {
       const C = 402;
       arc.style.strokeDashoffset = C * (1 - r.prob);
       arc.style.stroke = r.prob >= 0.6 ? "#dc2626" : r.prob >= 0.3 ? "#f59e0b" : "#16a34a";
-      $("gauge-val").textContent = Math.round(r.prob * 100) + (MN.lang === "ne" ? " %" : "%");
+      $("gauge-val").textContent = MN.num(Math.round(r.prob * 100)) + "%";
       $("ml-val").textContent = pct(r.prob);
       $("ml-bar").style.width = (r.prob * 100) + "%";
     } else {
